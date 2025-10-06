@@ -8,9 +8,12 @@ SQLAlchemy>=2.0.19
 # PostgreSQL driver compatible with Python 3.13
 psycopg[binary]>=3.1.0
 
-# Optional: password hashing, environment handling
+# Optional: environment handling
 python-dotenv>=1.0.0
 Werkzeug>=2.3.7
 
-# Optional: if you use forms
+# Optional: forms
 WTForms>=3.0.1
+
+# Production web server
+gunicorn>=21.2.0
