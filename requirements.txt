@@ -1,5 +1,14 @@
-Flask==2.3.5
+# Flask framework
+Flask==2.3.3
+
+# Database ORM
 Flask-SQLAlchemy==3.0.5
+
+# PostgreSQL driver
 psycopg2-binary==2.9.7
+
+# WSGI server for deployment
 gunicorn==21.2.0
+
+# Password hashing and security
 Werkzeug==2.3.7

@@ -1,12 +1,14 @@
 # app.py
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from database import init_db, db
 from models import User, Question, Result
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # for session & flash messages
-
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = os.environ.get("SECRET_KEY", "supersecretkey")
 # Initialize database
 init_db(app)
 
