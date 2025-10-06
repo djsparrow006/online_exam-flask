@@ -1,14 +1,16 @@
 # Flask framework
-Flask==2.3.3
+Flask>=2.3.3
 
-# Database ORM
-Flask-SQLAlchemy==3.0.5
+# SQLAlchemy integration
+Flask-SQLAlchemy>=3.0.3
+SQLAlchemy>=2.0.19
 
-# PostgreSQL driver
-psycopg2-binary==2.9.7
+# PostgreSQL driver compatible with Python 3.13
+psycopg[binary]>=3.1.0
 
-# WSGI server for deployment
-gunicorn==21.2.0
+# Optional: password hashing, environment handling
+python-dotenv>=1.0.0
+Werkzeug>=2.3.7
 
-# Password hashing and security
-Werkzeug==2.3.7
+# Optional: if you use forms
+WTForms>=3.0.1
