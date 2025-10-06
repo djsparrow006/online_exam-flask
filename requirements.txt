@@ -37,7 +37,6 @@ patsy==1.0.1
 pgmpy==1.0.0
 pillow==11.0.0
 propcache==0.3.1
-PyAudio==0.2.14
 pygame==2.6.1
 pyparsing==3.2.0
 pyro-api==0.1.2
