@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Admin Dashboard - Add Question</h2>
+
+<form method="POST" action="{{ url_for('add_question') }}">
+  <input type="text" name="question" placeholder="Enter question" required>
+  <input type="text" name="optionA" placeholder="Option A" required>
+  <input type="text" name="optionB" placeholder="Option B" required>
+  <input type="text" name="optionC" placeholder="Option C" required>
+  <input type="text" name="optionD" placeholder="Option D" required>
+  <input type="text" name="answer" placeholder="Correct answer (A/B/C/D)" required>
+  <input type="number" name="marks" placeholder="Marks for this question" required>
+  <button type="submit">Save Question</button>
+</form>
+
+<hr>
+
+<h2>Existing Questions - Edit Marks Inline</h2>
+<form method="POST" action="{{ url_for('admin_dashboard') }}">
+<table border="1" cellpadding="10">
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Option A</th>
+<th>Option B</th>
+<th>Option C</th>
+<th>Option D</th>
+<th>Answer</th>
+<th>Marks</th>
+</tr>
+{% for q in questions %}
+<tr>
+<td>{{ loop.index }}</td>
+<td>{{ q.question }}</td>
+<td>{{ q.option_a }}</td>
+<td>{{ q.option_b }}</td>
+<td>{{ q.option_c }}</td>
+<td>{{ q.option_d }}</td>
+<td>{{ q.answer }}</td>
+<td>
+  <input type="number" name="marks_{{ q.id }}" value="{{ q.marks }}" min="1" required>
+</td>
+</tr>
+{% endfor %}
+</table>
+<button type="submit">Update Marks</button>
+</form>
+
+<hr>
+
+<h2>Results</h2>
+<table border="1" cellpadding="10">
+<tr>
+<th>Student</th>
+<th>Score</th>
+</tr>
+{% for r in results %}
+<tr>
+<td>{{ r.user.username }}</td>
+<td>{{ r.score }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

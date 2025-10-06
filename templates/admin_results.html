@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Student Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f9f9f9; }
+        h2 { text-align: center; margin-top: 20px; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; }
+        th { background: #4CAF50; color: white; }
+        tr:hover { background: #f1f1f1; }
+    </style>
+</head>
+<body>
+    <h2>All Students' Results</h2>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Score</th>
+            <th>Date</th>
+        </tr>
+        {% for r, u in results %}
+        <tr>
+            <td>{{ u.username }}</td>
+            <td>{{ r.score }}</td>
+            <td>{{ r.created_at.strftime('%d %b %Y, %I:%M %p') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

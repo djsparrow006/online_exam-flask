@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Exam Result</h2>
+    <p><strong>Total Score:</strong> {{ total_score }} / {{ total_marks }}</p>
+
+    <h3>Question-wise Results:</h3>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Question</th>
+            <th>Your Answer</th>
+            <th>Correct Answer</th>
+            <th>Marks</th>
+            <th>Earned</th>
+        </tr>
+        {% for r in question_results %}
+        <tr>
+            <td>{{ r.question }}</td>
+            <td>{{ r.user_answer if r.user_answer else "Not Attempted" }}</td>
+            <td>{{ r.correct_answer }}</td>
+            <td>{{ r.marks }}</td>
+            <td>{{ r.earned }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="{{ url_for('home') }}">Go back to Home</a>
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .messages {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        p {
+            text-align: center;
+        }
+        a {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Register Student Account</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, msg in messages %}
+            <div class="messages {{ category }}">{{ msg }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<form method="POST" action="{{ url_for('register') }}">
+    <label>Username</label>
+    <input type="text" name="username" required minlength="3" placeholder="Enter username">
+
+    <label>Password</label>
+    <input type="password" name="password" required minlength="6" placeholder="Enter password">
+
+    <label>Confirm Password</label>
+    <input type="password" name="confirm" required minlength="6" placeholder="Confirm password">
+
+    <button type="submit">Register</button>
+</form>
+
+<p>Already have an account? <a href="{{ url_for('home') }}">Login here</a></p>
+
+</body>
+</html>

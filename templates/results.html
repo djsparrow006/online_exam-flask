@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Exam</h2>
+<form method="POST">
+  {% for q in questions %}
+    <p><b>{{ loop.index }}. {{ q.question }}</b></p>
+    <label><input type="radio" name="{{ q.id }}" value="A"> {{ q.option_a }}</label>
+    <label><input type="radio" name="{{ q.id }}" value="B"> {{ q.option_b }}</label>
+    <label><input type="radio" name="{{ q.id }}" value="C"> {{ q.option_c }}</label>
+    <label><input type="radio" name="{{ q.id }}" value="D"> {{ q.option_d }}</label>
+    <hr>
+  {% endfor %}
+  <button type="submit">Submit Exam</button>
+</form>
+{% endblock %}
