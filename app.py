@@ -99,7 +99,7 @@ def admin_dashboard():
     results = Result.query.all()  # now template will use r.user.username
     return render_template("admin.html", questions=questions, results=results)
 # ----------------- CREATE ADMIN ROUTE -----------------
-@app.route("/create_admin")
+@app.route("/create_admin006")
 def create_admin():
     # Only create if no admin exists
     if User.query.filter_by(role="admin").first():
