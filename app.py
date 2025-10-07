@@ -73,7 +73,7 @@ def register():
         flash("Registration successful! You can now log in.", "success")
         return redirect(url_for("home"))
 
-    return render_template("register.html")
+    return render_template("register1.html")
 
 # ----------------- ADMIN DASHBOARD -----------------
 @app.route("/admin/dashboard", methods=["GET", "POST"])
