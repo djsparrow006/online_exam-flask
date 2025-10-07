@@ -98,6 +98,22 @@ def admin_dashboard():
     questions = Question.query.all()
     results = Result.query.all()  # now template will use r.user.username
     return render_template("admin.html", questions=questions, results=results)
+# ----------------- CREATE ADMIN ROUTE -----------------
+@app.route("/create_admin")
+def create_admin():
+    # Only create if no admin exists
+    if User.query.filter_by(role="admin").first():
+        return "Admin already exists."
+
+    admin = User(
+        username="admin",
+        password=generate_password_hash("nannallavan"),  # Change password as needed
+        role="admin"
+    )
+    db.session.add(admin)
+    db.session.commit()
+    return "Admin created successfully!"
+
 
 
 # ----------------- ADD QUESTION -----------------
