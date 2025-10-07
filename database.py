@@ -1,9 +1,10 @@
-# database.py
+import os
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = os.environ.get("SECRET_KEY", "supersecretkey")
 
-def init_db(app):
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
+db = SQLAlchemy(app)
