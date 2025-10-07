@@ -1,16 +1,22 @@
-# app.py
-import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
-from database import init_db, db
+from database import db
 from models import User, Question, Result
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+
+# --- Database Config ---
+db_url = os.environ.get("DATABASE_URL")
+if db_url and db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql+psycopg://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = os.environ.get("SECRET_KEY", "supersecretkey")
-# Initialize database
-init_db(app)
+app.secret_key = os.environ.get("SECRET_KEY", "supersecret")
+
+db.init_app(app)
+
 
 # ----------------- LOGIN ROUTE -----------------
 @app.route("/", methods=["GET", "POST"])
